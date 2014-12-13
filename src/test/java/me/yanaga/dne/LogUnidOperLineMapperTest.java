@@ -1,23 +1,22 @@
 package me.yanaga.dne;
 
-import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.batch.item.file.transform.FieldSet;
+import me.yanaga.dne.sqlite.bean.LogUnidOper;
+import org.springframework.batch.item.file.LineMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import javax.annotation.Resource;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 @ContextConfiguration(classes = BatchConfig.class)
-public class LogUnidOperLineTokenizerTest extends AbstractTestNGSpringContextTests {
+public class LogUnidOperLineMapperTest extends AbstractTestNGSpringContextTests {
 
-	@Resource
-	private DelimitedLineTokenizer logUnidOperLineTokenizer;
+	@Autowired
+	private LineMapper<LogUnidOper> logUnidOperLineMapper;
 
 	@DataProvider(name = "lines")
 	public static Object[][] lines() {
@@ -34,21 +33,21 @@ public class LogUnidOperLineTokenizerTest extends AbstractTestNGSpringContextTes
 	}
 
 	@Test(dataProvider = "lines")
-	public void testLogUnidOperLineTokenizer(String line) {
-		FieldSet fieldSet = logUnidOperLineTokenizer.tokenize(line);
-		assertTrue(fieldSet.readLong("UOP_NU") > 0);
-		assertEquals(fieldSet.readString("UFE_SG"), "AC");
-		assertNotNull(fieldSet.readString("UOP_ENDERECO"));
-		assertTrue(fieldSet.readString("CEP").matches("\\d{8}"));
+	public void testLogUnidOperLineMaper(String line) throws Exception {
+		LogUnidOper logUnidOper = logUnidOperLineMapper.mapLine(line, 1);
+		assertTrue(logUnidOper.getUopNu()> 0);
+		assertEquals(logUnidOper.getUfeSg(), "AC");
+		assertNotNull(logUnidOper.getUopEndereco());
+		assertTrue(logUnidOper.getCep().matches("\\d{8}"));
 	}
 
 	@Test
-	public void testValues() {
-		FieldSet fieldSet = logUnidOperLineTokenizer.tokenize("23904@AC@11059@51784@@AC Campinas@Rua Kaxinawás@69929970@N@");
-		assertEquals(fieldSet.readLong("UOP_NU"), 23904);
-		assertEquals(fieldSet.readString("UFE_SG"), "AC");
-		assertNotNull(fieldSet.readString("UOP_ENDERECO"), "Rua Kaxinawás");
-		assertEquals(fieldSet.readString("CEP"), "69929970");
+	public void testValues() throws Exception {
+		LogUnidOper logUnidOper = logUnidOperLineMapper.mapLine("23904@AC@11059@51784@@AC Campinas@Rua Kaxinawás@69929970@N@", 1);
+		assertEquals(logUnidOper.getUopNu(), Integer.valueOf(23904));
+		assertEquals(logUnidOper.getUfeSg(), "AC");
+		assertNotNull(logUnidOper.getUopEndereco(), "Rua Kaxinawás");
+		assertEquals(logUnidOper.getCep(), "69929970");
 	}
 
 }
