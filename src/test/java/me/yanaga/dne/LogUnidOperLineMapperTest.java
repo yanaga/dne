@@ -46,7 +46,7 @@ public class LogUnidOperLineMapperTest extends AbstractTestNGSpringContextTests 
 		LogUnidOper logUnidOper = logUnidOperLineMapper.mapLine("23904@AC@11059@51784@@AC Campinas@Rua Kaxinawás@69929970@N@", 1);
 		assertEquals(logUnidOper.getUopNu(), Integer.valueOf(23904));
 		assertEquals(logUnidOper.getUfeSg(), "AC");
-		assertNotNull(logUnidOper.getUopEndereco(), "Rua Kaxinawás");
+		assertEquals(logUnidOper.getUopEndereco(), "Rua Kaxinawás");
 		assertEquals(logUnidOper.getCep(), "69929970");
 	}
 

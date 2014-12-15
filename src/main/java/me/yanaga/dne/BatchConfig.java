@@ -1,5 +1,6 @@
 package me.yanaga.dne;
 
+import me.yanaga.dne.sqlite.bean.LogFaixaUf;
 import me.yanaga.dne.sqlite.bean.LogUnidOper;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -34,6 +35,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogUnidOper> logUnidOperFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogUnidOper> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogUnidOper.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogFaixaUf> logFaixaUfLineMapper() {
+		DefaultLineMapper<LogFaixaUf> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logFaixaUfLineTokenizer());
+		lineMapper.setFieldSetMapper(logFaixaUfFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logFaixaUfLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"UFE_SG", "UFE_CEP_INI", "UFE_CEP_FIM"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogFaixaUf> logFaixaUfFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogFaixaUf> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogFaixaUf.class);
 		return fieldSetMapper;
 	}
 
