@@ -11,6 +11,7 @@ import me.yanaga.dne.sqlite.bean.LogLogradouro;
 import me.yanaga.dne.sqlite.bean.LogUnidOper;
 import me.yanaga.dne.sqlite.bean.LogVarBai;
 import me.yanaga.dne.sqlite.bean.LogVarLoc;
+import me.yanaga.dne.sqlite.bean.LogVarLog;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -296,6 +297,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogLogradouro> logLogradouroFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogLogradouro> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogLogradouro.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogVarLog> logVarLogLineMapper() {
+		DefaultLineMapper<LogVarLog> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logVarLogLineTokenizer());
+		lineMapper.setFieldSetMapper(logVarLogFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logVarLogLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"LOG_NU", "VLO_NU", "TLO_TX", "VLO_TX"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogVarLog> logVarLogFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogVarLog> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogVarLog.class);
 		return fieldSetMapper;
 	}
 }
