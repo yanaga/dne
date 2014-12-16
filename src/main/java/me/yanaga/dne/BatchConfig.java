@@ -3,6 +3,7 @@ package me.yanaga.dne;
 import me.yanaga.dne.sqlite.bean.LogBairro;
 import me.yanaga.dne.sqlite.bean.LogCpc;
 import me.yanaga.dne.sqlite.bean.LogFaixaBairro;
+import me.yanaga.dne.sqlite.bean.LogFaixaCpc;
 import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
 import me.yanaga.dne.sqlite.bean.LogFaixaUf;
 import me.yanaga.dne.sqlite.bean.LogLocalidade;
@@ -243,6 +244,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogCpc> logCpcFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogCpc> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogCpc.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogFaixaCpc> logFaixaCpcLineMapper() {
+		DefaultLineMapper<LogFaixaCpc> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logFaixaCpcLineTokenizer());
+		lineMapper.setFieldSetMapper(logFaixaCpcFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logFaixaCpcLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"CPC_NU", "CPC_INICIAL", "CPC_FINAL"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogFaixaCpc> logFaixaCpcFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogFaixaCpc> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogFaixaCpc.class);
 		return fieldSetMapper;
 	}
 }
