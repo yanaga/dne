@@ -1,6 +1,7 @@
 package me.yanaga.dne;
 
 import me.yanaga.dne.sqlite.bean.LogBairro;
+import me.yanaga.dne.sqlite.bean.LogFaixaBairro;
 import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
 import me.yanaga.dne.sqlite.bean.LogFaixaUf;
 import me.yanaga.dne.sqlite.bean.LogLocalidade;
@@ -191,6 +192,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogVarBai> logVarBaiFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogVarBai> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogVarBai.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogFaixaBairro> logFaixaBairroLineMapper() {
+		DefaultLineMapper<LogFaixaBairro> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logFaixaBairroLineTokenizer());
+		lineMapper.setFieldSetMapper(logFaixaBairroFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logFaixaBairroLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"BAI_NU", "FCB_CEP_INI", "FCB_CEP_FIM"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogFaixaBairro> logFaixaBairroFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogFaixaBairro> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogFaixaBairro.class);
 		return fieldSetMapper;
 	}
 }
