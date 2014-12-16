@@ -6,6 +6,7 @@ import me.yanaga.dne.sqlite.bean.LogFaixaBairro;
 import me.yanaga.dne.sqlite.bean.LogFaixaCpc;
 import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
 import me.yanaga.dne.sqlite.bean.LogFaixaUf;
+import me.yanaga.dne.sqlite.bean.LogFaixaUop;
 import me.yanaga.dne.sqlite.bean.LogGrandeUsuario;
 import me.yanaga.dne.sqlite.bean.LogLocalidade;
 import me.yanaga.dne.sqlite.bean.LogLogradouro;
@@ -374,6 +375,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogGrandeUsuario> logGrandeUsuarioFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogGrandeUsuario> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogGrandeUsuario.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogFaixaUop> logFaixaUopLineMapper() {
+		DefaultLineMapper<LogFaixaUop> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logFaixaUopLineTokenizer());
+		lineMapper.setFieldSetMapper(logFaixaUopFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logFaixaUopLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"UOP_NU", "FNC_INICIAL", "FNC_FINAL"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogFaixaUop> logFaixaUopFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogFaixaUop> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogFaixaUop.class);
 		return fieldSetMapper;
 	}
 }
