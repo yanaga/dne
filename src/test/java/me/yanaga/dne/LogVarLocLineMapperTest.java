@@ -34,7 +34,7 @@ public class LogVarLocLineMapperTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test(dataProvider = "lines")
-	public void testLogLocalidadeLineMaper(String line) throws Exception {
+	public void testLogVarLocLineMaper(String line) throws Exception {
 		LogVarLoc logVarLoc = logVarLocLineMapper.mapLine(line, 1);
 		assertTrue(logVarLoc.getLocNu() > 0);
 		assertNotNull(logVarLoc.getValNu());
