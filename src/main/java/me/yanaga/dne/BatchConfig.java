@@ -8,6 +8,7 @@ import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
 import me.yanaga.dne.sqlite.bean.LogFaixaUf;
 import me.yanaga.dne.sqlite.bean.LogLocalidade;
 import me.yanaga.dne.sqlite.bean.LogLogradouro;
+import me.yanaga.dne.sqlite.bean.LogNumSec;
 import me.yanaga.dne.sqlite.bean.LogUnidOper;
 import me.yanaga.dne.sqlite.bean.LogVarBai;
 import me.yanaga.dne.sqlite.bean.LogVarLoc;
@@ -322,6 +323,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogVarLog> logVarLogFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogVarLog> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogVarLog.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<LogNumSec> logNumSecLineMapper() {
+		DefaultLineMapper<LogNumSec> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logNumSecLineTokenizer());
+		lineMapper.setFieldSetMapper(logNumSecFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logNumSecLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"LOG_NU", "SEC_NU_INI", "SEC_NU_FIM", "SEC_IN_LADO"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogNumSec> logNumSecFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogNumSec> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogNumSec.class);
 		return fieldSetMapper;
 	}
 }
