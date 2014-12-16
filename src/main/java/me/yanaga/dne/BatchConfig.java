@@ -1,5 +1,6 @@
 package me.yanaga.dne;
 
+import me.yanaga.dne.sqlite.bean.EctPais;
 import me.yanaga.dne.sqlite.bean.LogBairro;
 import me.yanaga.dne.sqlite.bean.LogCpc;
 import me.yanaga.dne.sqlite.bean.LogFaixaBairro;
@@ -400,6 +401,31 @@ public class BatchConfig {
 	public FieldSetMapper<LogFaixaUop> logFaixaUopFieldSetMapper() {
 		BeanWrapperFieldSetMapper<LogFaixaUop> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
 		fieldSetMapper.setTargetType(LogFaixaUop.class);
+		return fieldSetMapper;
+	}
+
+	@Bean
+	public LineMapper<EctPais> ectPaisLineMapper() {
+		DefaultLineMapper<EctPais> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(ectPaisLineTokenizer());
+		lineMapper.setFieldSetMapper(ectPaisFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer ectPaisLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"PAI_SG", "PAI_SG_ALTERNATIVA", "PAI_NO_PORTUGUES", "PAI_NO_INGLES", "PAI_NO_FRANCES", "PAI_ABREVIATURA"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<EctPais> ectPaisFieldSetMapper() {
+		BeanWrapperFieldSetMapper<EctPais> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(EctPais.class);
 		return fieldSetMapper;
 	}
 }
