@@ -55,7 +55,7 @@ public class LogLocalidadeLineMapperTest extends AbstractTestNGSpringContextTest
 		assertEquals(logLocalidade.getLocNo(), "Acrelândia");
 		assertEquals(logLocalidade.getCep(), "69945000");
 		assertEquals(logLocalidade.getLocInSit(), "0");
-		assertEquals(logLocalidade.getLocInTipoLoc(), ("M"));
+		assertEquals(logLocalidade.getLocInTipoLoc(), "M");
 		assertNull(logLocalidade.getLocNuSub());
 		assertEquals(logLocalidade.getLocNoAbrev(), "Acrelândia");
 		assertEquals(logLocalidade.getMunNu(), "1200013");
