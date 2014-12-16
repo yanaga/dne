@@ -1,5 +1,6 @@
 package me.yanaga.dne;
 
+import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
 import me.yanaga.dne.sqlite.bean.LogFaixaUf;
 import me.yanaga.dne.sqlite.bean.LogLocalidade;
 import me.yanaga.dne.sqlite.bean.LogUnidOper;
@@ -116,4 +117,28 @@ public class BatchConfig {
 		return fieldSetMapper;
 	}
 
+	@Bean
+	public LineMapper<LogFaixaLocalidade> logFaixaLocalidadeLineMapper() {
+		DefaultLineMapper<LogFaixaLocalidade> lineMapper = new DefaultLineMapper<>();
+		lineMapper.setLineTokenizer(logFaixaLocalidadeLineTokenizer());
+		lineMapper.setFieldSetMapper(logFaixaLocalidadeFieldSetMapper());
+		return lineMapper;
+	}
+
+	@Bean
+	public DelimitedLineTokenizer logFaixaLocalidadeLineTokenizer() {
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter("@");
+		tokenizer.setNames(new String[] {
+				"LOC_NU", "LOC_CEP_INI", "LOC_CEP_FIM"
+		});
+		return tokenizer;
+	}
+
+	@Bean
+	public FieldSetMapper<LogFaixaLocalidade> logFaixaLocalidadeFieldSetMapper() {
+		BeanWrapperFieldSetMapper<LogFaixaLocalidade> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		fieldSetMapper.setTargetType(LogFaixaLocalidade.class);
+		return fieldSetMapper;
+	}
 }
