@@ -1,6 +1,7 @@
 package me.yanaga.dne;
 
-import me.yanaga.dne.sqlite.bean.LogFaixaLocalidade;
+import me.yanaga.dne.config.root.BatchConfig;
+import me.yanaga.dne.app.bean.LogFaixaLocalidade;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
