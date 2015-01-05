@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity
 public class LogCpc implements Serializable {
 
+    public static final String FILE_NAME = "LOG_CPC";
     @Id
     @Column(nullable = false)
     private Integer cpcNu;

@@ -30,7 +30,8 @@ public class PopulaBancoIT extends AbstractTestNGSpringContextTests {
 
 	protected static final Logger logger = LoggerFactory.getLogger(PopulaBancoIT.class);
 
-	private static final String PATH = "/home/kaissi/Downloads/Delimitador";
+//	private static final String PATH = "/home/kaissi/Downloads/Delimitador";
+	private static final String PATH = "/Users/kaissi/Downloads/PRODUTEC/Delimitado";
 
 	private static final int TAMANHO_PAGINA = 50;
 
@@ -50,7 +51,13 @@ public class PopulaBancoIT extends AbstractTestNGSpringContextTests {
 	private LineMapper<LogCpc> logCpcLineMapper;
 
 	@Autowired
+	private LogCpcRepository logCpcRepository;
+
+	@Autowired
 	private LineMapper<LogFaixaBairro> logFaixaBairroLineMapper;
+
+	@Autowired
+	private LogFaixaBairroRepository logFaixaBairroRepository;
 
 	@Autowired
 	private LineMapper<LogFaixaCpc> logFaixaCpcLineMapper;
@@ -91,8 +98,10 @@ public class PopulaBancoIT extends AbstractTestNGSpringContextTests {
 	@DataProvider(name = "tabelas")
 	private Object[][] tabelas() {
 		return new Object[][] {
-				{ EctPais.class.getSimpleName(), EctPais.FILE_NAME, ectPaisLineMapper, ectPaisRepository },
-				{ LogBairro.class.getSimpleName(), LogBairro.FILE_NAME, logBairroLineMapper, logBairroRepository }
+//				{ EctPais.class.getSimpleName(), EctPais.FILE_NAME, ectPaisLineMapper, ectPaisRepository },
+//				{ LogBairro.class.getSimpleName(), LogBairro.FILE_NAME, logBairroLineMapper, logBairroRepository },
+//				{ LogCpc.class.getSimpleName(), LogCpc.FILE_NAME, logCpcLineMapper, logCpcRepository },
+				{ LogFaixaBairro.class.getSimpleName(), LogFaixaBairro.FILE_NAME, logFaixaBairroLineMapper, logFaixaBairroRepository }
 		};
 	}
 

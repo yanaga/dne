@@ -8,6 +8,8 @@ import java.io.Serializable;
 @Entity
 public class LogFaixaBairro implements Serializable {
 
+    public static final String FILE_NAME = "LOG_FAIXA_BAIRRO";
+
     @EmbeddedId
     private LogFaixaBairroPK id;
 
