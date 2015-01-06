@@ -34,7 +34,7 @@ public class PopulaBancoIT extends AbstractTransactionalTestNGSpringContextTests
 
 	protected static final Logger logger = LoggerFactory.getLogger(PopulaBancoIT.class);
 
-	private static final String PATH = "/home/kaissi/Downloads/Delimitado-ISO-8859-1";
+	private static final String PATH = String.format("%s/Delimitado-ISO-8859-1", System.getProperty("user.dir"));
 
 	private static final int TAMANHO_PAGINA = 50;
 

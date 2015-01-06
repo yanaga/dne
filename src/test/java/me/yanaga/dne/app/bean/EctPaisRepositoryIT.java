@@ -4,14 +4,14 @@ import me.yanaga.dne.config.root.DneConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
 @ActiveProfiles("desenvolvimento")
 @ContextConfiguration(classes = { DneConfig.class })
-public class EctPaisRepositoryIT extends AbstractTestNGSpringContextTests {
+public class EctPaisRepositoryIT extends AbstractTransactionalTestNGSpringContextTests {
 
 	@Autowired
 	private EctPaisRepository ectPaisRepository;
@@ -27,7 +27,6 @@ public class EctPaisRepositoryIT extends AbstractTestNGSpringContextTests {
 		ectPais.setPaiAbreviatura("");
 		ectPaisRepository.save(ectPais);
 
-		assertTrue(ectPaisRepository.findAll().size() > 0);
-		ectPaisRepository.delete(ectPais); //-- TODO Não está fazendo Rollback
+		assertTrue(ectPaisRepository.findAll().size() == 1);
 	}
 }
