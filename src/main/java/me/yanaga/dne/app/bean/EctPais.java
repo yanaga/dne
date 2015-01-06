@@ -8,8 +8,6 @@ import java.io.Serializable;
 @Entity
 public class EctPais implements Serializable {
 
-	public static final String FILE_NAME = "ECT_PAIS";
-
 	@Id
 	@Column(length = 2, nullable = false)
 	private String paiSg;

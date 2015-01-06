@@ -1,32 +1,25 @@
 package me.yanaga.dne.app.bean;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity
+@IdClass(LogFaixaUfPK.class)
 public class LogFaixaUf implements Serializable {
 
-    @EmbeddedId
-    private LogFaixaUfPK id;
-
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(length = 2, nullable = false)
     private String ufeSg;
 
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(length = 8, nullable = false)
     private String ufeCepIni;
 
     @Column(length = 8, nullable = false)
     private String ufeCepFim;
-
-    public LogFaixaUfPK getId() {
-        return id;
-    }
-
-    public void setId(LogFaixaUfPK id) {
-        this.id = id;
-    }
 
     public String getUfeSg() {
         return ufeSg;

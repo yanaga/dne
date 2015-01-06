@@ -8,8 +8,6 @@ import java.io.Serializable;
 @Entity
 public class LogBairro implements Serializable {
 
-    public static final String FILE_NAME = "LOG_BAIRRO";
-
     @Id
     @Column(nullable = false)
     private Integer baiNu;

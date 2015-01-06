@@ -1,34 +1,25 @@
 package me.yanaga.dne.app.bean;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity
+@IdClass(LogFaixaBairroPK.class)
 public class LogFaixaBairro implements Serializable {
 
-    public static final String FILE_NAME = "LOG_FAIXA_BAIRRO";
-
-    @EmbeddedId
-    private LogFaixaBairroPK id;
-
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(nullable = false)
     private Integer baiNu;
 
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(length = 8, nullable = false)
     private String fcbCepIni;
 
     @Column(length = 8, nullable = false)
     private String fcbCepFim;
-
-    public LogFaixaBairroPK getId() {
-        return id;
-    }
-
-    public void setId(LogFaixaBairroPK id) {
-        this.id = id;
-    }
 
     public Integer getBaiNu() {
         return baiNu;

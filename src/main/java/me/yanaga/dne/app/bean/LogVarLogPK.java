@@ -3,17 +3,12 @@ package me.yanaga.dne.app.bean;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 public class LogVarLogPK implements Serializable {
 
-	@Column(nullable = false)
 	private Integer logNu;
 
-	@Column(nullable = false)
 	private Integer vloNu;
 
 	@Override

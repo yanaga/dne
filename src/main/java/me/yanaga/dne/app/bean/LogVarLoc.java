@@ -1,32 +1,25 @@
 package me.yanaga.dne.app.bean;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity
+@IdClass(LogVarLocPK.class)
 public class LogVarLoc implements Serializable {
 
-    @EmbeddedId
-    private LogVarLocPK id;
+    @Id
+    @Column(nullable = false)
+	private Integer locNu;
 
-    @Column(insertable = false, updatable = false)
-    private Integer locNu;
-
-    @Column(insertable = false, updatable = false)
-    private Integer valNu;
+    @Id
+	@Column(nullable = false)
+	private Integer valNu;
 
     @Column(length = 72, nullable = false)
     private String valTx;
-
-    public LogVarLocPK getId() {
-        return id;
-    }
-
-    public void setId(LogVarLocPK id) {
-        this.id = id;
-    }
 
     public Integer getLocNu() {
         return locNu;

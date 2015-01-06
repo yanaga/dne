@@ -1,20 +1,21 @@
 package me.yanaga.dne.app.bean;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity
+@IdClass(LogVarLogPK.class)
 public class LogVarLog implements Serializable {
 
-    @EmbeddedId
-    private LogVarLogPK id;
-
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(nullable = false)
     private Integer logNu;
 
-    @Column(insertable = false, updatable = false)
+    @Id
+    @Column(nullable = false)
     private Integer vloNu;
 
     @Column(length = 36, nullable = false)
@@ -22,14 +23,6 @@ public class LogVarLog implements Serializable {
 
     @Column(length = 150, nullable = false)
     private String vloTx;
-
-    public LogVarLogPK getId() {
-        return id;
-    }
-
-    public void setId(LogVarLogPK id) {
-        this.id = id;
-    }
 
     public Integer getLogNu() {
         return logNu;

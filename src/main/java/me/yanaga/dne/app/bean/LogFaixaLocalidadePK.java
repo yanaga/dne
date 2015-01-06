@@ -3,17 +3,12 @@ package me.yanaga.dne.app.bean;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 public class LogFaixaLocalidadePK implements Serializable {
 
-	@Column(nullable = false)
 	private Integer locNu;
 
-	@Column(length = 8, nullable = false)
 	private String locCepIni;
 
 	@Override

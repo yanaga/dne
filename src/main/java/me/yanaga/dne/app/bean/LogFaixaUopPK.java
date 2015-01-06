@@ -3,17 +3,12 @@ package me.yanaga.dne.app.bean;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 public class LogFaixaUopPK implements Serializable {
 
-	@Column(nullable = false)
 	private Integer uopNu;
 
-	@Column(nullable = false)
 	private Integer fncInicial;
 
 	@Override
