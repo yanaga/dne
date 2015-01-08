@@ -11,10 +11,10 @@ public abstract class DatabaseConfigAbstract {
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(getDriverClassName());
+		dataSource.setDriverClassName("org.sqlite.JDBC");
 		dataSource.setUrl(getUrl());
-		dataSource.setUsername(getUsername());
-		dataSource.setPassword(getPassword());
+		dataSource.setUsername("");
+		dataSource.setPassword("");
 		dataSource.setTestOnBorrow(true);
 		dataSource.setTestOnReturn(true);
 		dataSource.setTestWhileIdle(true);
@@ -28,22 +28,9 @@ public abstract class DatabaseConfigAbstract {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPersistenceUnitName(getPersistenceUnitName());
+		factoryBean.setPersistenceUnitName("sqlite");
 		return factoryBean;
 	}
 
-	protected String getDriverClassName() {
-		return "org.sqlite.JDBC";
-	}
-
-	protected String getPersistenceUnitName() {
-		return "sqlite";
-	}
-
 	protected abstract String getUrl();
-
-	protected abstract String getPassword();
-
-	protected abstract String getUsername();
-
 }

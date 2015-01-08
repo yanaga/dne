@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-@ActiveProfiles("desenvolvimento")
+@ActiveProfiles(value = "test")
 @ContextConfiguration(classes = { DneConfig.class })
 public class EctPaisRepositoryIT extends AbstractTransactionalTestNGSpringContextTests {
 

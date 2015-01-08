@@ -1,4 +1,4 @@
-package me.yanaga.dne.config.annotation;
+package me.yanaga.dne.config.root.annotation;
 
 import org.springframework.context.annotation.Profile;
 
@@ -7,9 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Profile("desenvolvimento")
+@Profile("default")
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Desenvolvimento {
+public @interface Default {
 
 }

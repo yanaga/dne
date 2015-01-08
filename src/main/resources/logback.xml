@@ -9,9 +9,10 @@
     </appender>
     <logger name="org.apache" level="WARN" />
     <logger name="org.springframework" level="WARN" />
-    <logger name="me.yanaga.dne" level="WARN" />
+    <logger name="me.yanaga.dne" level="INFO" />
     <logger name="javax.enterprise.resource.webcontainer.jsf.config" level="OFF" />
-    <root level="WARN">
+    <logger name="org.hibernate" level="WARN" />
+    <root level="INFO">
         <appender-ref ref="CONSOLE" />
     </root>
 </configuration>

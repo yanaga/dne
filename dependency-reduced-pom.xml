@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.yanaga</groupId>
   <artifactId>dne</artifactId>
-  <packaging>war</packaging>
   <name>dne</name>
   <version>1.0-SNAPSHOT</version>
   <description>Implementação de serviço de importação da base de dados do DNE e interface REST.</description>
@@ -68,9 +67,7 @@
           </execution>
         </executions>
         <configuration>
-          <excludes>
-            <exclude>${populaBanco-test}</exclude>
-          </excludes>
+          <excludes />
         </configuration>
       </plugin>
       <plugin>
@@ -227,7 +224,6 @@
   </distributionManagement>
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <populaBanco-test>**/PopulaBancoIT.java</populaBanco-test>
     <integration-test>**/*IT.java</integration-test>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>

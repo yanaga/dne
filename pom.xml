@@ -3,7 +3,7 @@
     <groupId>me.yanaga</groupId>
     <artifactId>dne</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>dne</name>
     <description>
         Implementação de serviço de importação da base de dados do DNE e interface REST.
@@ -56,7 +56,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <integration-test>**/*IT.java</integration-test>
-        <populaBanco-test>**/PopulaBancoIT.java</populaBanco-test>
         <querydsl.version>3.5.0</querydsl.version>
     </properties>
     <dependencies>
@@ -211,7 +210,6 @@
                 <version>2.9</version>
                 <configuration>
                     <excludes>
-                        <exclude>${populaBanco-test}</exclude>
                         <!--<exclude>${integration-test}</exclude>-->
                     </excludes>
                 </configuration>
