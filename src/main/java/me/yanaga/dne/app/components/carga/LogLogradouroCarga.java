@@ -2,16 +2,8 @@ package me.yanaga.dne.app.components.carga;
 
 import me.yanaga.dne.app.bean.LogLogradouro;
 import me.yanaga.dne.app.bean.LogLogradouroRepository;
-import org.springframework.batch.item.file.LineMapper;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LogLogradouroCarga extends CargaAbstract<LogLogradouro, Integer> {
-
-	private LineMapper<LogLogradouro> logLogradouroLineMapper;
-
-	private LogLogradouroRepository logLogradouroRepository;
 
 	private LogLogradouroCarga() {
 		super(LogLogradouro.class);
@@ -22,7 +14,7 @@ public class LogLogradouroCarga extends CargaAbstract<LogLogradouro, Integer> {
 	}
 
 	@Override
-	public String[] getArquivos() {
+	protected String[] getArquivos() {
 		return new String[] {
 				"LOG_LOGRADOURO_AC.TXT", "LOG_LOGRADOURO_AL.TXT", "LOG_LOGRADOURO_AM.TXT",
 				"LOG_LOGRADOURO_AP.TXT", "LOG_LOGRADOURO_BA.TXT", "LOG_LOGRADOURO_CE.TXT",
@@ -38,21 +30,11 @@ public class LogLogradouroCarga extends CargaAbstract<LogLogradouro, Integer> {
 
 	@Override
 	protected void configLineMapper() {
-		logLogradouroLineMapper = getBeanMapper().logLogradouroLineMapper();
-	}
-
-	@Override
-	public LineMapper<LogLogradouro> lineMapper() {
-		return checkNotNull(logLogradouroLineMapper);
+		lineMapper = getBeanMapper().logLogradouroLineMapper();
 	}
 
 	@Override
 	protected void configRepository() {
-		logLogradouroRepository = getBean(LogLogradouroRepository.class);
-	}
-
-	@Override
-	public JpaRepository<LogLogradouro, Integer> repository() {
-		return checkNotNull(logLogradouroRepository);
+		repository = getBean(LogLogradouroRepository.class);
 	}
 }

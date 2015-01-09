@@ -24,7 +24,8 @@ public class CargaDados {
 	private List<CargaAbstract> cargasConfigured = Lists.newLinkedList();
 
 	public CargaDadosPrepared prepare(CargaAbstract... cargas) {
-		logger.info("Preparando a carga de dados.");
+		logger.info(String.format("Preparando a carga de dados do banco '%s' com os arquivos da pasta '%s'",
+				System.getenv("DATABASE_URL"), System.getenv("DNE_FILES")));
 		checkNotNull(cargas);
 		checkArgument(cargas.length > 0);
 		for (CargaAbstract carga: cargas) {

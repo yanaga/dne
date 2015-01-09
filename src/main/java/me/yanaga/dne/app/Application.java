@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.IOException;
-
 import static me.yanaga.dne.app.components.carga.EctPaisCarga.ectPais;
 import static me.yanaga.dne.app.components.carga.LogBairroCarga.logBairro;
 import static me.yanaga.dne.app.components.carga.LogCpcCarga.logCpc;
@@ -36,19 +34,14 @@ public class Application {
 		context.register(DneConfig.class);
 		context.refresh();
 
-		try {
-			CargaDados cargaDados = context.getBean(CargaDados.class);
-			cargaDados.prepare(
-					ectPais(), logBairro(), logCpc(), logFaixaBairro(),
-					logFaixaCpc(), logFaixaLocalidade(), logFaixaUf(),
-					logFaixaUop(), logGrandeUsuario(), logLocalidade(),
-					logLogradouro(), logNumSec(), logUnidOper(), logVarBai(),
-					logVarLoc(), logVarLog()
-			).run();
-		}
-		catch (IOException ex) {
-			logger.error("Erro ao realizar a carga de dados.", ex);
-		}
+		CargaDados cargaDados = context.getBean(CargaDados.class);
+		cargaDados.prepare(
+				ectPais(), logBairro(), logCpc(), logFaixaBairro(),
+				logFaixaCpc(), logFaixaLocalidade(), logFaixaUf(),
+				logFaixaUop(), logGrandeUsuario(), logLocalidade(),
+				logLogradouro(), logNumSec(), logUnidOper(), logVarBai(),
+				logVarLoc(), logVarLog()
+		).run();
 	}
 
 }
