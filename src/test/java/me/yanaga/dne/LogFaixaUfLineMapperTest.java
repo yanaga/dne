@@ -1,6 +1,7 @@
 package me.yanaga.dne;
 
-import me.yanaga.dne.sqlite.bean.LogFaixaUf;
+import me.yanaga.dne.config.root.BatchConfig;
+import me.yanaga.dne.app.bean.LogFaixaUf;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

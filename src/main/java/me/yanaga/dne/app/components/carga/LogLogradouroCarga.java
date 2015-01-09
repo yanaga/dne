@@ -1,0 +1,40 @@
+package me.yanaga.dne.app.components.carga;
+
+import me.yanaga.dne.app.bean.LogLogradouro;
+import me.yanaga.dne.app.bean.LogLogradouroRepository;
+
+public class LogLogradouroCarga extends CargaAbstract<LogLogradouro, Integer> {
+
+	private LogLogradouroCarga() {
+		super(LogLogradouro.class);
+	}
+
+	public static LogLogradouroCarga logLogradouro() {
+		return new LogLogradouroCarga();
+	}
+
+	@Override
+	protected String[] getArquivos() {
+		return new String[] {
+				"LOG_LOGRADOURO_AC.TXT", "LOG_LOGRADOURO_AL.TXT", "LOG_LOGRADOURO_AM.TXT",
+				"LOG_LOGRADOURO_AP.TXT", "LOG_LOGRADOURO_BA.TXT", "LOG_LOGRADOURO_CE.TXT",
+				"LOG_LOGRADOURO_DF.TXT", "LOG_LOGRADOURO_ES.TXT", "LOG_LOGRADOURO_GO.TXT",
+				"LOG_LOGRADOURO_MA.TXT", "LOG_LOGRADOURO_MG.TXT", "LOG_LOGRADOURO_MS.TXT",
+				"LOG_LOGRADOURO_MT.TXT", "LOG_LOGRADOURO_PA.TXT", "LOG_LOGRADOURO_PB.TXT",
+				"LOG_LOGRADOURO_PE.TXT", "LOG_LOGRADOURO_PI.TXT", "LOG_LOGRADOURO_PR.TXT",
+				"LOG_LOGRADOURO_RJ.TXT", "LOG_LOGRADOURO_RN.TXT", "LOG_LOGRADOURO_RO.TXT",
+				"LOG_LOGRADOURO_RR.TXT", "LOG_LOGRADOURO_RS.TXT", "LOG_LOGRADOURO_SC.TXT",
+				"LOG_LOGRADOURO_SE.TXT", "LOG_LOGRADOURO_SP.TXT", "LOG_LOGRADOURO_TO.TXT"
+		};
+	}
+
+	@Override
+	protected void configLineMapper() {
+		lineMapper = getBeanMapper().logLogradouroLineMapper();
+	}
+
+	@Override
+	protected void configRepository() {
+		repository = getBean(LogLogradouroRepository.class);
+	}
+}
