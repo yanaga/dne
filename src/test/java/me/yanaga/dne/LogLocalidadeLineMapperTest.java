@@ -1,8 +1,8 @@
 package me.yanaga.dne;
 
 import com.google.common.base.Strings;
-import me.yanaga.dne.config.root.BatchConfig;
-import me.yanaga.dne.app.bean.LogLocalidade;
+import me.yanaga.dne.app.BatchConfig;
+import me.yanaga.dne.sqlite.bean.LogLocalidade;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
